@@ -20,5 +20,5 @@ Here's a list of things you'll need to make an LED Candle:
 
 ## Instructions
 
-# Step 1
+### Step 1
 
