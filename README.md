@@ -16,9 +16,54 @@ Here's a list of things you'll need to make an LED Candle:
 - 3 resistors(10k ohms each)
 - LED(Any LED will do)
 - Modern Device Wind Sensor Rev C4
+- 5 pin header
 - At least 13 jumper wires
+- Sodder stick and sodder
 
 ## Instructions
 
-### Step 1
+### Step 1. Sodder the win sensor onto the 5 header pin
+The reason this step is neccesary is because when you try to attach the wind sensor to the header, the sensor will not stick on. That's why soddering the pins to the sensor can help the sensor stick on better. And don't worry; soddering is not as scary as it sounds. All you have to do is heat up your soddering stick, take a line of sodder, and have both materialstouch the top of the pin. When the sodder line touches the sodder stick, the sodder will melt off and drop onto the pin before solidifying and therefore keeping the pin attached. This step will be easy since you only need to sodder 5 pins. However, you also need to be quick and remove the sodder stick when the melted sodder is applied, otherwise you could burn the wind sensor. When you're done, leave your soddered wind sensor to dry for an hour just for good measure
+
+### Step 2. Build the circuit
+Now that your wind sensor is ready, and it onto the breadboard along with the other materials you will be using. Using the soddered pins, attach the wind sensor to the bottom of the breadbaord with the front of the sensor pointing away from the board. You can also add the LED, but when you add it, make sure the longest leg is pointing the right way. If your LED is on the positive side of the breadbaord, then the longest leg should be facing the front. If your LED is on the negative side of the breadbaord, then the longest leg should be facing the back. Finally, add the 3 push buttons and the resistors at the bottom. The resistors should have their back leg connected to ground and the front leg connected to each button's first leg.
+
+### Step 3. Add the wires
+You will now have to give power to your breadbaord so that the project can run. This can be done by connecting parts of the circuit to an Arduino Uno via jumper wires. I used 13 for my design, but you can use as many as you see fit. Start by plugging in wires to the wind sensor. You'll notice that on the sensor there will be text above the pins. That will be where you will have to plug in jumper wires. Start by connecting GND to ground, then +V to the 5V pin, RV to the A1 pin, and TMP to the A0 pin. For the LED, I connected the longest leg to pin 13 and the shortest leg to ground. For each push buttonuse two wires; one to connect to a digital pin and the other to connect to 5V(with the exception of one button that will connect to the 3.3V pin). You can use any digital pin you like, but I have mine connected to pins 11, 9, and 2.
+
+### Step 4. Connect your Arduino to your computer
+With your circuit now complete, you can use a USB cable to connect your Arduino to your computer. You will have to download the Arduino app on your computer so you can write and upload code to your Arduino.
+
+### Step 5. Write and upload the code
+Now it's time to get this LED to work by writing some code. Fortunately, the code for this project can be found on the website for this project. It will be linked down below in the Credits section. I also added my own comments to explain what each part of the code does. However, I will take this time to talk about the new code I have added to this project near the end in the void loop():
+
+ buttonStateb = digitalRead(buttonPinb);
+ buttonStated = digitalRead(buttonPind);
+if (buttonPinb == HIGH){
+      if(b > 225){
+        b = b;
+      }
+      else{
+        b += 45;
+        delay(100);
+      }
+     }
+
+      if (buttonPind == HIGH){
+      if(b < 225){
+        b = b;
+      }
+      else{
+        b -= 45;
+        delay(100);
+      }
+     }
+     
+    analogWrite(led, b);
+ 
+ As you can see, I have added a few new variables. int b is the brightness equal to 0. buttonPinb is the button that increases brightness, while buttonPind is the button that decreases brightness. Each button variable will have a buttonState to check whether each button has been pressed or not. If buttonPinb is pressed and the LED is not at full brightness, b will increase by 45. Vice versa, if buttonPind is pressed and the LED is at full capacity or lower, b will decrease by 45. This is how the LED's brightness changes since LED can produce a maximum brightness of 255. This value will be written from the analog to effect te LED.
+ 
+ ### Step 6. Test your device
+ To test your new device, blow on the wind sensor to try and turn off the LED. The wind sensor measures the wind speed and then turns that value into electrcity which can then tell the Arduino whether the LED should be off or on. You can adjust the wind speed in the code to find out what works, but mine is set at 6. With all of these steps done, your LED candle is ready for that dinner date.
+
 
