@@ -61,9 +61,29 @@ if (buttonPinb == HIGH){
      
     analogWrite(led, b);
  
- As you can see, I have added a few new variables. int b is the brightness equal to 0. buttonPinb is the button that increases brightness, while buttonPind is the button that decreases brightness. Each button variable will have a buttonState to check whether each button has been pressed or not. If buttonPinb is pressed and the LED is not at full brightness, b will increase by 45. Vice versa, if buttonPind is pressed and the LED is at full capacity or lower, b will decrease by 45. This is how the LED's brightness changes since LED can produce a maximum brightness of 255. This value will be written from the analog to effect te LED.
+ As you can see, I have added a few new variables. int b is the brightness equal to 0. buttonPinb is the button that increases brightness, while buttonPind is the button that decreases brightness. Each button variable will have a buttonState to check whether each button has been pressed or not. If buttonPinb is pressed and the LED is not at full brightness, b will increase by 45. Vice versa, if buttonPind is pressed and the LED is at full capacity or lower, b will decrease by 45. This is how the LED's brightness changes since LED can produce a maximum brightness of 255. This value will be written from the analog to effect te LED. If you wrote code on Arduino for the first time, you may want to save the code to a file on your computer before you upload it.
  
  ### Step 6. Test your device
- To test your new device, blow on the wind sensor to try and turn off the LED. The wind sensor measures the wind speed and then turns that value into electrcity which can then tell the Arduino whether the LED should be off or on. You can adjust the wind speed in the code to find out what works, but mine is set at 6. With all of these steps done, your LED candle is ready for that dinner date.
+ To test your new device, blow on the wind sensor to try and turn off the LED. The wind sensor measures the wind speed and then turns that value into electrcity which can then tell the Arduino whether the LED should be off or on. When the LED is off, you can use one of the buttons to turn it back on.You can adjust the wind speed in the code to find out what works, but mine is set at 6. With all of these steps done, your LED candle is ready for that dinner date.
+ 
+ ## Planned Features
+ 
+ One feature that I planned on adding was to make the candle look like a real candle. I was thinking of using a small cardboard box to put my Arduino in and then cut holes in the lid for the LED, buttons, and wind sensor to stick out. Then I would put the lid on the box to make it look like a real candle. The main reason why I could not add this feature was because I got a reality check; I'd have to unplug the Arduino to make the lid fit which would turn off all the power on the device. Not to mention the lid might damage the wires. Even if it was possible to put a lid on, I would not have enough time to do it since my wind sesnor got delivered to me 2 weeks after I purchased it.
+ 
+ ## Bugs List
+ 
+ Despite how ingenius this idea may sound, there are still a lot of problems that I could not solve
+ 
+ ### Whacky wind sensor
+ When I uploaded my code to my project for the first time, it was working well, but barely. The LED would often turn off at random intervals sometimes when I moved my hand across the device. I decided to use the serial monitor to exploit this problem to find out that the wind speed values were inconsistently increasing and decreasing ranging from 0 mph to 100 mph. Sometimes the wind speed would even reach a nan value. The wind sensor was also still a bit lose on the header pins and I do not think I soddered them enough. If that happens to you, I would recommend that you use an object(like a book) to support the end of your wind sensor  so that it doesn't tilt when you blow on it.
+ 
+ ### Could not get brightness to work
+ So yeah, I got the first part of the project working, but my innovation for some reason did not work. Whenever I ran my additional code for the brightness function, the LED would turn on and then off when I pushed the on button. I've tried for days to solve this problem, but nothing seems to work. But hey, I still give myself credit for being able to nail the first part of the project down.
+ 
+ If anyone has any solutions to these problems, feel free to look over my code. It can be found in my repository.
+ 
+ ## License
+ 
+ 
 
 
