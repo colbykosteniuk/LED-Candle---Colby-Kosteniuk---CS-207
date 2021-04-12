@@ -82,7 +82,7 @@ if (buttonPinb == HIGH){
  
  If anyone has any solutions to these problems, feel free to look over my code. It can be found in my repository.
  
- ## License
+ ## License 
  
  
 
