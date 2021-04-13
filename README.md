@@ -84,6 +84,9 @@ if (buttonPinb == HIGH){
  
  ## License 
  
+ Licensened under [GNU License](LICENSE).
+ 
+ 
  
  
  
