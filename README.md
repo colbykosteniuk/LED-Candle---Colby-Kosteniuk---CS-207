@@ -86,6 +86,20 @@ if (buttonPinb == HIGH){
  
  Licensened under [GNU License](LICENSE).
  
+ ## Credits
+ 
+ Credit goes to:
+ 
+ Arduino for providing the technology I built my software on
+ 
+ Paul Badger and John Keefe for providing the code and instructions as well as the ordering place for the windsensor at Makezine: https://makezine.com/projects/make-an-led-candle-you-can-blow-out/
+ 
+ Nature's Technology for providing a tutorial on the brightness switch: https://www.youtube.com/watch?v=F1jOo3ScQB8&t=204s
+ 
+ ## Thanks
+ 
+ Special thanks to my CS 207 professor, Trevor Tomesh, for giving me the fundamental knowledge I needed to do this project. Another special thanks to my mom who helped me buy the parts I needed and put the project together. 
+ 
  
  
  
