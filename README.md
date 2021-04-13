@@ -114,7 +114,7 @@ if (buttonPinb == HIGH){
  
  Nature's Technology for providing a tutorial on the brightness switch: https://www.youtube.com/watch?v=F1jOo3ScQB8&t=204s
  
- ## Thanks
+ ## Thanks 
  
  Special thanks to my CS 207 professor, Trevor Tomesh, for giving me the fundamental knowledge I needed to do this project. Another special thanks to my mom who helped me buy the parts I needed and put the project together. 
  
