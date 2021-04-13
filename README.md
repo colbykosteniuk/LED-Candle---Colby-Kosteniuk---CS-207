@@ -43,6 +43,7 @@ Now that your wind sensor is ready, attach it to the breadboard along with the o
 ### Step 3. Add the wires
 
 ![](image6.jpg)
+![](image1.jpg)
 
 You will now have to give power to your breadbaord so that the project can run. This can be done by connecting parts of the circuit to an Arduino Uno via jumper wires. I used 13 for my design, but you can use as many as you see fit. Start by plugging in wires to the wind sensor. You'll notice that on the sensor there will be text above the pins. That will be where you will have to plug in jumper wires. Start by connecting GND to ground, then +V to the 5V pin, RV to the A1 pin, and TMP to the A0 pin. For the LED, I connected the longest leg to pin 13 and the shortest leg to ground. For each push button, use two wires; one to connect to a digital pin and the other to connect to 5V(with the exception of one button that will connect to the 3.3V pin). You can use any digital pin you like, but I have mine connected to pins 11, 9, and 2.
 
