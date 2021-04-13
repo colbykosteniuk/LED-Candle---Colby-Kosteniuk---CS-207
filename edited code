@@ -18,13 +18,19 @@
 
  Hardware setup:
  Wind Sensor is powered from a regulated five volt source.
- RV pin and TMP pin are connected to analog inputs.
+ RV pin and TMP pin are connected to analog inputs:
+ - RV is connected to A1
+ - TMP is connected to A0
+ An LED will be connected to ground and pin 13
+ 3 push buttons will each be connected to 5V and pins 11, 9, and 2 indivudally foolowed along with a 10k ohms resistor each.
 
  */
 
+// Establish pins for RV and TMP pins
 #define analogPinForRV    1   // change to pins you the analog pins are using
 #define analogPinForTMP   0
 
+// Establish variables for wind speed, temperature, and volts
 const float zeroWindAdjustment =  .2; 
 int TMP_Therm_ADunits;  
 float RV_Wind_ADunits;   
@@ -35,39 +41,41 @@ float zeroWind_ADunits;
 float zeroWind_volts;
 float WindSpeed_MPH;
 
+// Establish variables for the led and buttons
 int led = 13;              // candle LED 
-const int buttonPin_ON = 2;   // the pushbutton pin
-const int buttonPin_B = A2;
-const int buttonPin_D = A3;
-const int maxB = 12;
-int buttonState_ON = 0;       // variable for reading the pushbutton status
-int buttonState_B = 0;
-int buttonState_D = 0;
-
-
+const int buttonPin = 2;   // the pushbutton pin
+const int buttonPinb = 11;
+const int buttonPind = 9;
+int buttonState = 0;       // variable for reading the pushbutton status
+int ledState = 0;
+int buttonStateb;
+int buttonStated;
+int b = 0;
 
 void setup() {
 
   // initialize the digital pin as an output.
   pinMode(led, OUTPUT); 
 
-  // initialize the pushbutton pin as an input:
-  pinMode(buttonPin_ON, INPUT);
-  pinMode(buttonPin_B, INPUT);
-  pinMode(buttonPin_D, INPUT);    
+  // initialize the pushbutton pins as inputs:
+  pinMode(buttonPin, INPUT);    
+   pinMode(buttonPinb, INPUT);
+    pinMode(buttonPind, INPUT);
 
   // turn LED on
   digitalWrite(led, HIGH);
+
+  // Activate serial monitor
   Serial.begin(9600);
 
 }
 
 void loop() {
+  // buttonState will detect whether button is pressed or not)
+  buttonState = digitalRead(buttonPin);
 
-  buttonState_ON = digitalRead(buttonPin_ON);
-  buttonState_B = digitalRead(buttonPin_B);
-  buttonState_D = digitalRead(buttonPin_D);
-
+  // if the total millis value is greater than 200,
+  // analog read unit values for TMP and RV and convert windd units to volts
   if (millis() - lastMillis > 200){   
 
     TMP_Therm_ADunits = analogRead(analogPinForTMP);
@@ -76,25 +84,66 @@ void loop() {
 
     // these are all derived from regressions from raw data as such they depend on a lot of experimental factors
     // such as accuracy of temp sensors, and voltage at the actual wind sensor, (wire losses) which were unaccouted for.
+    // Establish temperature, wind, and voltage values
     TempCtimes100 = (0.005 *((float)TMP_Therm_ADunits * (float)TMP_Therm_ADunits)) - (16.862 * (float)TMP_Therm_ADunits) + 9075.4;  
 
     zeroWind_ADunits = -0.0006*((float)TMP_Therm_ADunits * (float)TMP_Therm_ADunits) + 1.0727 * (float)TMP_Therm_ADunits + 47.172;  //  13.0C  553  482.39
 
     zeroWind_volts = (zeroWind_ADunits * 0.0048828125) - zeroWindAdjustment;  
 
-   WindSpeed_MPH =  pow(((RV_Wind_Volts - zeroWind_volts) /.2300) , 2.7265);   
+  // Establish value for wind speed
+   WindSpeed_MPH =  pow(((RV_Wind_Volts - zeroWind_volts) /.2300) , 2.7265);  
 
+  // Print wind speed in serial monitor
+   Serial.println(WindSpeed_MPH);
+
+  // Detect button presses for buttons b and d
+    buttonStateb = digitalRead(buttonPinb);
+     buttonStated = digitalRead(buttonPind);
+
+     // The code is meant for the brightness controller which is my contribution to the project.
+     /*
+      * // Adjust brightness based on which button is pressed
+      * // If ButtonPinb is pressed and brightness is greater than 255, leave be alone, otherwise add 45 for each press and delay for 100 miliseconds
+     if (buttonPinb == HIGH){
+      if(b > 255){
+        b = b;
+      }
+      else{
+        b += 45;
+        delay(100);
+      }
+     }
+// If ButtonPinb is pressed and brightness is less than 255, leave be alone, otherwise subtract 45 for each press and delay for 100 miliseconds
+      if (buttonPind == HIGH){
+      if(b < 255){
+        b = b;
+      }
+      else{
+        b -= 45;
+        delay(100);
+      }
+     }
+     
+     
+
+     
+    analogWrite(led, b);
+    */
+    
+  // Activate function if windspeed is greater than 6
     if (WindSpeed_MPH > 6) {
       douseCandle();
     }
 
-    if (buttonState_ON == HIGH) {
-      lightCandle();
-    }
-
+    
+  // Activate function if button is on
+   if (buttonState == HIGH) {
+     lightCandle();
+   }
+  // lastMillis will be equal to millis
     lastMillis = millis();    
   } 
-  Serial.println(WindSpeed_MPH);
 
 }
 
@@ -106,8 +155,7 @@ void douseCandle() {
 }
 
 void lightCandle() {
-  
 
-  digitalWrite(led, HIGH);
+  digitalWrite(led, HIGH); 
 
 }
