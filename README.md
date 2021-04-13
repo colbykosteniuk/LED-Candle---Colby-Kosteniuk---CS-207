@@ -105,7 +105,7 @@ if (buttonPinb == HIGH){
  Licensened under [GNU License](LICENSE).
  
  ## Credits
- 
+  
  Credit goes to:
  
  Arduino for providing the technology I built my software on
