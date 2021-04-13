@@ -27,7 +27,7 @@ Here's a list of things you'll need to make an LED Candle:
 ## Instructions
 
 ### Step 1. Sodder the wind sensor onto the 5 header pin
-
+ 
 ![](image3.jpg)
 
 ![](image4.jpg)
