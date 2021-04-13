@@ -93,7 +93,7 @@ if (buttonPinb == HIGH){
  ### Whacky wind sensor
  When I uploaded my code to my project for the first time, it was working well, but barely. The LED would often turn off at random intervals sometimes when I moved my hand across the device. I decided to use the serial monitor to exploit this problem to find out that the wind speed values were inconsistently increasing and decreasing ranging from 0 mph to 100 mph. Sometimes the wind speed would even reach a nan value. The wind sensor was also still a bit lose on the header pins and I do not think I soddered them enough. If that happens to you, I would recommend that you use an object(like a book) to support the end of your wind sensor  so that it doesn't tilt when you blow on it.
  
- ![](number errors)
+ ![](number errors.jpg)
  
  ### Could not get brightness to work
  So yeah, I got the first part of the project working, but my innovation for some reason did not work. Whenever I ran my additional code for the brightness function, the LED would turn on and then off when I pushed the on button. I've tried for days to solve this problem, but nothing seems to work. But hey, I still give myself credit for being able to nail the first part of the project down.
